@@ -65,7 +65,7 @@ df = pd.DataFrame(data)
 # Streamlit App
 st.title("Arabic Poetry Generation and Analysis")
 
-st.write("This app generates and analyzes Arabic poetry using LangChain and IBM Watson.")
+st.write("This app generates and analyzes Arabic poetry using ALLaM and IBM Watson.")
 
 # get API key
 api_key = st.text_input("Enter your API key:")  
