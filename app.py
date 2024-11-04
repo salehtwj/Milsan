@@ -1,6 +1,3 @@
-# app.py
-
-
 import streamlit as st
 import pandas as pd
 import os
@@ -79,7 +76,6 @@ threshold = st.slider("Select similarity threshold:", 0.0, 1.0, 0.9)
 
 # Define Functions
 def load_data():
-    # Function to load poems and their seas
     return df
 
 def create_documents(df):
@@ -94,7 +90,6 @@ def create_documents(df):
 
 def create_embedding(documents):
     embeddings = HuggingFaceEmbeddings(model_name="Omartificial-Intelligence-Space/GATE-AraBert-v0")
-  
     return FAISS.from_documents(documents, embeddings)
 
 def get_credentials():
@@ -153,7 +148,7 @@ def generate_poetry_response(query, threshold, model):
     results = arabic_VDB.similarity_search_with_score(query, k=4)
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
     input_with_rag = the_ofth_prompt + context_text + "\n\n" + "  اجب هنا بناء على هذا الطلب : " + query
-    return model.generate(input_with_rag)['results'][0].get('generated_text')
+    return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 # Process Data and Display Results
 if st.button("Run Model"):
@@ -170,8 +165,11 @@ if st.button("Run Model"):
         credentials = get_credentials(),
         project_id = "11af8977-9294-4e73-a863-b7e37a214840"
 	)
-    response = generate_poetry_response(query, threshold, model)
+    response , rag = generate_poetry_response(query, threshold, model)
     st.write("Generated Poetry:")
     st.write(response)
+    st.write("Generated RAG:")
+    st.write(rag)
+	
 
 
