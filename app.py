@@ -140,15 +140,15 @@ df = pd.DataFrame(data)
 # Display the DataFrame
 
 # Streamlit App
-st.title("Arabic Poetry Generation and Analysis")
+st.title("اهلا بكم في ضيافة الشاعر النابغة الملساني")
 
-st.write("This app generates and analyzes Arabic poetry using ALLaM and IBM Watson.")
+st.write("هنا تستطيع سؤال الشاعر العظيم ملسان عن ابيات او انشاء قصائد من بحور متعددة من اختياركم")
 
 # get API key
-api_key = st.text_input("Enter your API key:")  
+api_key = st.text_input("ادخل مفاتح الاستخدام")  
 
 # User Input
-query = st.text_input("Enter a query (e.g., generate a poem in a specific meter):")
+query = st.text_input("اكتب طلبك سواء تقييم قصيدة معينه او انشاء قصيدة من احد البحور الشعرية ")
 threshold = st.slider("Select similarity threshold:", 0.0, 1.0, 0.9)
 
 # Define Functions
