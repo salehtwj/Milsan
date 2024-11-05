@@ -153,7 +153,6 @@ st.markdown(
     .stApp h1 {
         font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
         font-size: 40px;
-        color: #4CAF50;  /* Optional: Change text color */
         text-align: right;  /* Align title to the right */
     }
 
@@ -161,7 +160,6 @@ st.markdown(
     .stApp p {
         font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
         font-size: 18px;
-        color: #333;  /* Optional: Change text color */
         text-align: right;  /* Align text to the right */
     }
     
