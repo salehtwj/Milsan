@@ -67,7 +67,7 @@ st.markdown(
 st.markdown(
     """
     <div class="top-left-logo">
-        <img src="images/ALLaM_logo.png" alt="ALLaM Logo">
+        <img src="https://github.com/salehtwj/Milsan/blob/main/images/ALLaM_logo.png?raw=true" alt="ALLaM Logo">
     </div>
     """,
     unsafe_allow_html=True
