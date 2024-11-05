@@ -145,11 +145,11 @@ st.title("اهلا بكم في ضيافة الشاعر النابغة الملس
 st.write("هنا تستطيع سؤال الشاعر العظيم ملسان عن ابيات او انشاء قصائد من بحور متعددة من اختياركم")
 
 # get API key
-api_key = st.text_input("ادخل مفاتح الاستخدام")  
+api_key = st.text_input("ادخل مفتاح الاستخدام")  
 
 # User Input
 query = st.text_input("اكتب طلبك سواء تقييم قصيدة معينه او انشاء قصيدة من احد البحور الشعرية ")
-threshold = st.slider("Select similarity threshold:", 0.0, 1.0, 0.9)
+threshold = st.slider("اختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
 
 # Define Functions
 def load_data():
@@ -228,7 +228,7 @@ def generate_poetry_response(query, threshold, model):
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 # Process Data and Display Results
-if st.button("Run Model"):
+if st.button("اطلق العنان"):
     st.write("Loading and processing documents...")
     documents = create_documents(df)
     arabic_VDB = create_embedding(documents)
