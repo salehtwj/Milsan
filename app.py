@@ -55,9 +55,9 @@ st.markdown(
 st.markdown(
     """
     <div class="bottom-left-logos">
-        <img src="./images/SDAIA_logo.png" alt="SDAIA Logo">
-        <img src="images/safcsp_logo.png" alt="SAFCSP Logo">
-        <img src="images/tuwaiq_logo_w.png" alt="Tuwaiq Logo">
+        <img src="https://github.com/salehtwj/Milsan/blob/main/images/SDAIA_logo.png?raw=true" alt="SDAIA Logo">
+        <img src="https://github.com/salehtwj/Milsan/blob/main/images/safcsp_logo.png?raw=true" alt="SAFCSP Logo">
+        <img src="https://github.com/salehtwj/Milsan/blob/main/images/tuwaiq_logo_w.png?raw=true/" alt="Tuwaiq Logo">
     </div>
     """,
     unsafe_allow_html=True
