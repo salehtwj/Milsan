@@ -26,7 +26,7 @@ st.markdown(
     <style>
     /* Set the background image */
     .stApp {
-        background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/test.webp");  
+        background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/Screen Shot 1446-05-04 at 2.18.43 AM.png?raw=true");  
         background-size: cover;
         background-position: center;
     }
