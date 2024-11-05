@@ -147,6 +147,7 @@ st.markdown(
     /* Set the direction of the entire app to right-to-left (RTL) */
     .stApp {
         direction: rtl;
+	margin-left: 20px;
     }
 
     /* Change font for the title */
