@@ -14,7 +14,7 @@ st.markdown(
     <style>
     /* Set the background image */
     .stApp {
-        background-image: url("images/background.jpg");  /* Add your background image */
+        background-image: url(".images/background.jpg");  /* Add your background image */
         background-size: cover;
         background-position: center;
     }
@@ -55,7 +55,7 @@ st.markdown(
 st.markdown(
     """
     <div class="bottom-left-logos">
-        <img src="images/SDAIA_logo.png" alt="SDAIA Logo">
+        <img src=".images/SDAIA_logo.png" alt="SDAIA Logo">
         <img src="images/safcsp_logo.png" alt="SAFCSP Logo">
         <img src="images/tuwaiq_logo_w.png" alt="Tuwaiq Logo">
     </div>
