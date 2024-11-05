@@ -8,6 +8,71 @@ from ibm_watsonx_ai.foundation_models import Model
 import markdown
 import getpass
 
+# styling 
+st.markdown(
+    """
+    <style>
+    /* Set the background image */
+    .stApp {
+        background-image: url("images/background.jpg");  /* Add your background image */
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Position the logos at the bottom left */
+    .bottom-left-logos {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .bottom-left-logos img {
+        width: 100px;
+        height: auto;
+        margin-right: 15px;
+    }
+
+    /* Position the top left logo */
+    .top-left-logo {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .top-left-logo img {
+        width: 100px;
+        height: auto;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Add logos fo the sponsers 
+st.markdown(
+    """
+    <div class="bottom-left-logos">
+        <img src="images/SDAIA_logo.png" alt="SDAIA Logo">
+        <img src="images/safcsp_logo.png" alt="SAFCSP Logo">
+        <img src="images/tuwaiq_logo_w.png" alt="Tuwaiq Logo">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Add Allam challenge logo
+st.markdown(
+    """
+    <div class="top-left-logo">
+        <img src="images/ALLaM_logo.png" alt="ALLaM Logo">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # Load Data
 data = {
     "Poem": [
@@ -170,6 +235,9 @@ if st.button("Run Model"):
     st.write(response)
     st.write("Generated RAG:")
     st.write(rag)
+
+
+
 	
 
 
