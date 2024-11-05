@@ -8,6 +8,18 @@ from ibm_watsonx_ai.foundation_models import Model
 import markdown
 import getpass
 
+
+st.markdown(
+    """
+    <style>
+    /* Hide the Streamlit top bar (header) */
+    header { 
+        visibility: hidden;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # styling 
 st.markdown(
     """
