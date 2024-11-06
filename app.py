@@ -259,6 +259,7 @@ if st.button("أطلق العنان"):
         model_id=model_id,
         params=parameters,
         credentials=get_credentials(),
+	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
     response , rag = generate_poetry_response(query, threshold, model)
     st.write("Generated Poetry:")
