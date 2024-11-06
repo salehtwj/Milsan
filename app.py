@@ -233,7 +233,7 @@ the_ofth_prompt = """
 """
 
 def generate_poetry_response(query, threshold, model):
-    results = arabic_VDB.similarity_search_with_score(query, k=10) # you can add k this is the number of the rag context 
+    results = arabic_VDB.similarity_search_with_score(query, k=6) # you can add k this is the number of the rag context 
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
     input_with_rag = the_ofth_prompt + context_text + " \n\n " + "  اجب هنا بناء على هذا الطلب : " + query
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
