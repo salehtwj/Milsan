@@ -244,18 +244,15 @@ def generate_poetry_response(query, threshold, model):
     input_with_rag = the_ofth_prompt + context_text + "\n\n" + "  اجب هنا بناء على هذا الطلب : " + query
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
+documents = create_documents(df) 
+arabic_VDB = create_embedding(documents)
 
-# Show a loading spinner while performing the task
-with st.spinner("يتم تجهيز ملسان"):
-    documents = create_documents(df) 
-    arabic_VDB = create_embedding(documents)
-
-    model_id = "sdaia/allam-1-13b-instruct"
-    parameters = { 
-        "decoding_method": "greedy", 
-        "max_new_tokens": 200, 
-        "repetition_penalty": 1 
-    }
+model_id = "sdaia/allam-1-13b-instruct"
+parameters = { 
+"decoding_method": "greedy", 
+"max_new_tokens": 200, 
+"repetition_penalty": 1 
+}
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
