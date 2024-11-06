@@ -267,7 +267,7 @@ def generate_poetry_response(query, threshold, model):
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 # Process Data and Display Results
-if st.button("اطلق العنان"):
+if st.button("أطلق العنان"):
     st.write("Loading and processing documents...")
     documents = create_documents(df)
     arabic_VDB = create_embedding(documents)
