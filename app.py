@@ -29,7 +29,7 @@ st.markdown(
         background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/Screen Shot 1446-05-04 at 2.18.43 AM.png?raw=true");  
         background-size: cover;
         background-position: center;
-	opacity: 0.8;
+	opacity: 0.2;
     }
 
     /* Position the logos at the bottom left */
