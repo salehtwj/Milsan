@@ -7,7 +7,8 @@ from langchain_community.vectorstores import FAISS
 from ibm_watsonx_ai.foundation_models import Model
 import markdown
 import getpass
-
+import streamlit as st
+import time
 
 st.markdown(
     """
@@ -267,29 +268,27 @@ def generate_poetry_response(query, threshold, model):
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 
-if not st.session_state.action_done:
-    st.session_state.action_done = True
+# Show a loading spinner while performing the task
+with st.spinner("Processing documents... This may take a moment."):
+    documents = create_documents(df)  # Assuming df is already defined
+    arabic_VDB = create_embedding(documents)
 
-    with st.spinner("Processing documents... Please wait."):
-        # Perform the task
-        documents = create_documents(df)  # Assuming df is defined
-        arabic_VDB = create_embedding(documents)
+    model_id = "sdaia/allam-1-13b-instruct"
+    parameters = { 
+        "decoding_method": "greedy", 
+        "max_new_tokens": 200, 
+        "repetition_penalty": 1 
+    }
 
-        # Set up the model
-        model_id = "sdaia/allam-1-13b-instruct"
-        parameters = { 
-            "decoding_method": "greedy", 
-            "max_new_tokens": 200, 
-            "repetition_penalty": 1 
-        }
-        model = Model(
-            model_id=model_id,
-            params=parameters,
-            credentials=get_credentials(),
-            project_id="11af8977-9294-4e73-a863-b7e37a214840"
-        )
+    model = Model(
+        model_id=model_id,
+        params=parameters,
+        credentials=get_credentials(),
+        project_id="11af8977-9294-4e73-a863-b7e37a214840"
+    )
 
-    st.success("Documents processed successfully!")
+# After processing is done, show a success message
+st.success("Documents processed successfully!")
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
