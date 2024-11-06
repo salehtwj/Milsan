@@ -5,7 +5,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter # this is to 
 from langchain_community.vectorstores import FAISS # VDB
 from ibm_watsonx_ai.foundation_models import Model # IBM API call
 import markdown # so the LLM can have getter understanding to the NHL
-import getpass # to enter the API Key
 
 st.markdown(
     """
@@ -155,17 +154,6 @@ data = {
 # Create DataFrame
 df = pd.DataFrame(data)
 
-# Streamlit App
-st.title("أهلا بكم في ضيافة الشاعر النابغة المِلساني")
-
-st.write("هنا تستطيع سؤال الشاعر ملسان عن أبيات او إنشاء قصائد من بحور متعددة من اختياركم")
-
-# get API key
-api_key = st.text_input("أدخل مفتاح الاستخدام")  
-
-# User Input
-query = st.text_input("أكتب طلبك سواء تقييم قصيدة معينة او إنشاء قصيدة من أحد البحور الشعرية ")
-threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
 
 # Define Functions
 def load_data():
@@ -244,11 +232,19 @@ def generate_poetry_response(query, threshold, model):
 
 
 
-# Process Data and Display Results
-if st.button("أطلق العنان"):
+
+
+# Streamlit App Start
+st.title("أهلا بكم في ضيافة الشاعر النابغة المِلساني")
+
+st.write("هنا تستطيع سؤال الشاعر ملسان عن أبيات او إنشاء قصائد من بحور متعددة من اختياركم")
+
+# get API key
+api_key = st.text_input("أدخل مفتاح الاستخدام")  
+arabic_VDB = create_embedding(documents)
+if st.button("أتأكد من المفتاح"):
     documents = create_documents(df) 
     arabic_VDB = create_embedding(documents)
-	
     model_id = "sdaia/allam-1-13b-instruct"
     parameters = { 
 	"decoding_method": "greedy", 
@@ -261,6 +257,29 @@ if st.button("أطلق العنان"):
         credentials=get_credentials(),
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
+
+# User Input
+query = st.text_input("أكتب طلبك سواء تقييم قصيدة معينة او إنشاء قصيدة من أحد البحور الشعرية ")
+threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
+
+
+# Process Data and Display Results
+if st.button("أطلق العنان"):
+ #    documents = create_documents(df) 
+ #    arabic_VDB = create_embedding(documents)
+	
+ #    model_id = "sdaia/allam-1-13b-instruct"
+ #    parameters = { 
+	# "decoding_method": "greedy", 
+	# "max_new_tokens": 200, 
+	# "repetition_penalty": 1 
+	# }
+ #    model = Model(
+ #        model_id=model_id,
+ #        params=parameters,
+ #        credentials=get_credentials(),
+	# project_id ="11af8977-9294-4e73-a863-b7e37a214840",
+ #    )
     response , rag = generate_poetry_response(query, threshold, model)
     st.write("Generated Poetry:")
     st.write(response)
