@@ -256,7 +256,7 @@ if st.button("أطلق العنان"):
     st.write("Generated Poetry:")
     status = st.empty()
 	
-    status.markdown('<div class="custom-text">...يتم الإبداع</div>', unsafe_allow_html=True)
+    status.markdown('<div class="custom-text">يتم الإبداع...</div>', unsafe_allow_html=True)
     documents = create_documents(df) 
     arabic_VDB = create_embedding(documents)
 	
