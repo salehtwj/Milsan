@@ -77,7 +77,7 @@ st.markdown(
 	[data-testid="stVerticalBlockBorderWrapper"]{
 
 	background: rgba(255, 255, 255, 0.2);
-	padding: 10px;
+	padding: 30px;
 	border-radius: 15px;
 
     }
