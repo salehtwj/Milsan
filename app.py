@@ -17,20 +17,36 @@ st.markdown(
     header { 
         visibility: hidden;
     }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-# styling 
-st.markdown(
-    """
-    <style>
+
     /* Set the background image */
     .stApp {
         background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/Screen Shot 1446-05-04 at 2.18.43 AM.png?raw=true");  
         background-size: cover;
         background-position: center;
     }
+
+    /* Import IBM Plex Sans Arabic from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+    
+    /* Set the direction of the entire app to right-to-left (RTL) */
+    .stApp {
+        direction: rtl;
+    }
+
+    /* Change font for the title */
+    .stApp h1 {
+        font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
+        font-size: 40px;
+        text-align: right;  /* Align title to the right */
+    }
+
+    /* Change font for the text under the title (st.write) */
+    .stApp p {
+        font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
+        font-size: 18px;
+        text-align: right;  /* Align text to the right */
+    }
+    
 
     /* Position the logos at the bottom left */
     .bottom-left-logos {
@@ -70,31 +86,20 @@ st.markdown(
 
 }
     </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Add logos fo the sponsers 
-st.markdown(
-    """
+    
     <div class="bottom-left-logos">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/SDAIA_logo-removebg-preview.png?raw=true" alt="SDAIA Logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/safcsp_logo.png?raw=true" alt="SAFCSP Logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/tuwaiq_logo_w.png?raw=true/" alt="Tuwaiq Logo">
     </div>
-    """,
-    unsafe_allow_html=True
-)
 
-# Add Allam challenge logo
-st.markdown(
-    """
     <div class="top-left-logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/ALLaM_logo.png?raw=true" alt="ALLaM Logo">
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 # Load Data
 data = {
@@ -148,37 +153,6 @@ data = {
 # Create DataFrame
 df = pd.DataFrame(data)
 
-# Display the DataFrame
-st.markdown(
-    """
-    <style>
-    /* Import IBM Plex Sans Arabic from Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
-    
-    /* Set the direction of the entire app to right-to-left (RTL) */
-    .stApp {
-        direction: rtl;
-    }
-
-    /* Change font for the title */
-    .stApp h1 {
-        font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
-        font-size: 40px;
-        text-align: right;  /* Align title to the right */
-    }
-
-    /* Change font for the text under the title (st.write) */
-    .stApp p {
-        font-family: 'IBM Plex Sans Arabic', sans-serif;  /* Use IBM Plex Sans Arabic */
-        font-size: 18px;
-        text-align: right;  /* Align text to the right */
-    }
-    
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Streamlit App
 st.title("أهلا بكم في ضيافة الشاعر النابغة المِلساني")
 
@@ -213,8 +187,7 @@ def get_credentials():
     return {
         "url": "https://eu-de.ml.cloud.ibm.com",
         "apikey": api_key,  
-        "project_id": "11af8977-9294-4e73-a863-b7e37a214840",  # Set your actual project_id here
-        # Alternatively, use "space_id": "your_space_id_here" if applicable
+        "project_id": "11af8977-9294-4e73-a863-b7e37a214840",
     }
 
 
@@ -269,8 +242,8 @@ def generate_poetry_response(query, threshold, model):
 
 
 # Show a loading spinner while performing the task
-with st.spinner("Processing documents... This may take a moment."):
-    documents = create_documents(df)  # Assuming df is already defined
+with st.spinner("يتم تجهيز ملسان"):
+    documents = create_documents(df) 
     arabic_VDB = create_embedding(documents)
 
     model_id = "sdaia/allam-1-13b-instruct"
@@ -279,11 +252,6 @@ with st.spinner("Processing documents... This may take a moment."):
         "max_new_tokens": 200, 
         "repetition_penalty": 1 
     }
-
-    
-
-# After processing is done, show a success message
-st.success("Documents processed successfully!")
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
@@ -299,19 +267,6 @@ if st.button("أطلق العنان"):
     st.write("Generated RAG:")
     st.write(rag)
 
- #    st.write("Loading and processing documents...")
- #    documents = create_documents(df)
- #    arabic_VDB = create_embedding(documents)
-
- #    model_id = "sdaia/allam-1-13b-instruct"
- #    parameters = { "decoding_method": "greedy", "max_new_tokens": 200, "repetition_penalty": 1 }
-    
- #    model = Model(
- #        model_id = model_id,
- #        params = parameters,
- #        credentials = get_credentials(),
- #        project_id = "11af8977-9294-4e73-a863-b7e37a214840"
-	# )
 
 
 
