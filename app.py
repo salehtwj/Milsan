@@ -255,7 +255,8 @@ threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0,
 if st.button("أطلق العنان"):
     st.write("Generated Poetry:")
     status = st.empty()
-    status.text("بتم الإبداع")
+	
+    status.markdown('<div class="custom-text">...يتم الإبداع</div>', unsafe_allow_html=True)
     documents = create_documents(df) 
     arabic_VDB = create_embedding(documents)
 	
@@ -272,7 +273,7 @@ if st.button("أطلق العنان"):
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
     response , rag = generate_poetry_response(query, threshold, model)
-    status.text(response)
+    status.markdown(f'<div class="custom-text">{response}</div>', unsafe_allow_html=True)
     st.write("Generated RAG:")
     st.write(rag)
 
