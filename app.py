@@ -212,7 +212,7 @@ def create_embedding(documents):
 def get_credentials():
     return {
         "url": "https://eu-de.ml.cloud.ibm.com",
-        "apikey": api_key,  # Replace with your actual API key
+        "apikey": api_key,  
         "project_id": "11af8977-9294-4e73-a863-b7e37a214840",  # Set your actual project_id here
         # Alternatively, use "space_id": "your_space_id_here" if applicable
     }
@@ -280,18 +280,25 @@ with st.spinner("Processing documents... This may take a moment."):
         "repetition_penalty": 1 
     }
 
-    model = Model(
-        model_id=model_id,
-        params=parameters,
-        credentials=get_credentials(),
-        project_id="11af8977-9294-4e73-a863-b7e37a214840"
-    )
+    
 
 # After processing is done, show a success message
 st.success("Documents processed successfully!")
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
+    model = Model(
+        model_id=model_id,
+        params=parameters,
+        credentials=get_credentials(),
+        project_id="11af8977-9294-4e73-a863-b7e37a214840"
+    )
+    response , rag = generate_poetry_response(query, threshold, model)
+    st.write("Generated Poetry:")
+    st.write(response)
+    st.write("Generated RAG:")
+    st.write(rag)
+
  #    st.write("Loading and processing documents...")
  #    documents = create_documents(df)
  #    arabic_VDB = create_embedding(documents)
@@ -305,11 +312,6 @@ if st.button("أطلق العنان"):
  #        credentials = get_credentials(),
  #        project_id = "11af8977-9294-4e73-a863-b7e37a214840"
 	# )
-    response , rag = generate_poetry_response(query, threshold, model)
-    st.write("Generated Poetry:")
-    st.write(response)
-    st.write("Generated RAG:")
-    st.write(rag)
 
 
 
