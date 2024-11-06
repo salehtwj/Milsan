@@ -83,7 +83,7 @@ st.markdown(
     }
     .custom-text {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
-            font-size: 24px;
+            font-size: 44px;
         }
     </style>
     """,
