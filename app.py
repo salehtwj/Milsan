@@ -246,10 +246,11 @@ api_key = st.text_input("أدخل مفتاح الاستخدام")
 query = st.text_input("أكتب طلبك سواء تقييم قصيدة معينة او إنشاء قصيدة من أحد البحور الشعرية ")
 threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
 
-status = st.empty()
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
+    st.write("Generated Poetry:")
+    status = st.empty()
     status.text("بتم الإبداع")
     documents = create_documents(df) 
     arabic_VDB = create_embedding(documents)
@@ -267,7 +268,6 @@ if st.button("أطلق العنان"):
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
     response , rag = generate_poetry_response(query, threshold, model)
-    st.write("Generated Poetry:")
     status.text(response)
     st.write("Generated RAG:")
     st.write(rag)
