@@ -241,10 +241,11 @@ st.write("هنا تستطيع سؤال الشاعر ملسان عن أبيات �
 
 # get API key
 api_key = st.text_input("أدخل مفتاح الاستخدام")  
+documents = create_documents(df) 
 arabic_VDB = create_embedding(documents)
 if st.button("أتأكد من المفتاح"):
-    documents = create_documents(df) 
-    arabic_VDB = create_embedding(documents)
+    # documents = create_documents(df) 
+    # arabic_VDB = create_embedding(documents)
     model_id = "sdaia/allam-1-13b-instruct"
     parameters = { 
 	"decoding_method": "greedy", 
