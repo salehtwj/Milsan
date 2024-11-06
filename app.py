@@ -241,11 +241,19 @@ st.write("هنا تستطيع سؤال الشاعر ملسان عن أبيات �
 
 # get API key
 api_key = st.text_input("أدخل مفتاح الاستخدام")  
-documents = create_documents(df) 
-arabic_VDB = create_embedding(documents)
-if st.button("أتأكد من المفتاح"):
-    # documents = create_documents(df) 
-    # arabic_VDB = create_embedding(documents)
+
+# User Input
+query = st.text_input("أكتب طلبك سواء تقييم قصيدة معينة او إنشاء قصيدة من أحد البحور الشعرية ")
+threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
+
+status = st.empty()
+
+# Process Data and Display Results
+if st.button("أطلق العنان"):
+    status.text("بتم الإبداع")
+    documents = create_documents(df) 
+    arabic_VDB = create_embedding(documents)
+	
     model_id = "sdaia/allam-1-13b-instruct"
     parameters = { 
 	"decoding_method": "greedy", 
@@ -258,32 +266,9 @@ if st.button("أتأكد من المفتاح"):
         credentials=get_credentials(),
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
-
-# User Input
-query = st.text_input("أكتب طلبك سواء تقييم قصيدة معينة او إنشاء قصيدة من أحد البحور الشعرية ")
-threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
-
-
-# Process Data and Display Results
-if st.button("أطلق العنان"):
- #    documents = create_documents(df) 
- #    arabic_VDB = create_embedding(documents)
-	
- #    model_id = "sdaia/allam-1-13b-instruct"
- #    parameters = { 
-	# "decoding_method": "greedy", 
-	# "max_new_tokens": 200, 
-	# "repetition_penalty": 1 
-	# }
- #    model = Model(
- #        model_id=model_id,
- #        params=parameters,
- #        credentials=get_credentials(),
-	# project_id ="11af8977-9294-4e73-a863-b7e37a214840",
- #    )
     response , rag = generate_poetry_response(query, threshold, model)
     st.write("Generated Poetry:")
-    st.write(response)
+    status.text(response)
     st.write("Generated RAG:")
     st.write(rag)
 
