@@ -86,7 +86,12 @@ st.markdown(
 
 }
     </style>
-    
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
     <div class="bottom-left-logos">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/SDAIA_logo-removebg-preview.png?raw=true" alt="SDAIA Logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/safcsp_logo.png?raw=true" alt="SAFCSP Logo">
@@ -99,7 +104,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
 # Load Data
 data = {
