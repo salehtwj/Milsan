@@ -61,7 +61,13 @@ st.markdown(
     [data-baseweb="slider"] {
 	direction: ltr;
     }
+	[data-testid="stVerticalBlockBorderWrapper"]{
 
+	background: rgba(255, 255, 255, 0.2);
+	padding: 10px;
+	border-radius: 15px;
+
+}
     </style>
     """,
     unsafe_allow_html=True
