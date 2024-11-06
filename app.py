@@ -58,6 +58,10 @@ st.markdown(
         height: auto;
     }
 
+    [data-baseweb="slider"] {
+	direction: ltr;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
