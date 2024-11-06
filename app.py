@@ -1,14 +1,11 @@
-import streamlit as st
-import pandas as pd
-import os
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
-from ibm_watsonx_ai.foundation_models import Model
-import markdown
-import getpass
-import streamlit as st
-import time
+import streamlit as st # for dl
+import pandas as pd # for data frame
+from langchain_huggingface import HuggingFaceEmbeddings # temp for now in the ht we will change to the IBM embedding
+from langchain.text_splitter import RecursiveCharacterTextSplitter # this is to sipletter fo the markdown df
+from langchain_community.vectorstores import FAISS # VDB
+from ibm_watsonx_ai.foundation_models import Model # IBM API call
+import markdown # so the LLM can have getter understanding to the NHL
+import getpass # to enter the API Key
 
 st.markdown(
     """
@@ -108,7 +105,8 @@ st.markdown(
 # Load Data
 data = {
     "Poem": [
-        """قِفا نَبكِ مِن ذِكرى حَبيبٍ وَعِرفانِ   وَرَسمٍ عَفَت آياتُهُ مُنذُ أَزمانِ""" ,""" أَتَت حُجَجٌ بَعدي عَلَيها فَأَصبَحَت   كَخَطِّ زَبورٍ في مَصاحِفِ رُهبانِ """
+        """قِفا نَبكِ مِن ذِكرى حَبيبٍ وَعِرفانِ   وَرَسمٍ عَفَت آياتُهُ مُنذُ أَزمانِ"""
+	,""" أَتَت حُجَجٌ بَعدي عَلَيها فَأَصبَحَت   كَخَطِّ زَبورٍ في مَصاحِفِ رُهبانِ """
         ,""" أَعِنّي عَلى بَرقٍ أَراهُ وَميضِ  يُضيءُ حَبِيّاً في شَماريخَ بيضِ   وَيَهدَأُ تاراتٍ سَناهُ وَتارَةً   يَنوءُ كَتَعتابِ الكَسيرِ المَهيضِ """
         ,""" طَرِبتَ وَهاجَتكَ الظِباءُ السَوارِحُ  غَداةَ غَدَت مِنها سَنيحٌ وَبارِحُ  تَغالَت بِيَ الأَشواقُ حَتّى كَأَنَّما   بِزَندَينِ في جَوفي مِنَ الوَجدِ قادِحُ """
         ,""" أُعاتِبُ دَهراً لا يَلينُ لِعاتِبِ   وَأَطلُبُ أَمناً مِن صُروفِ النَوائِبِ   وَتوعِدُني الأَيّامُ وَعداً تَغُرُّني   وَأَعلَمُ حَقّاً أَنَّهُ وَعدُ كاذِبِ """
@@ -239,28 +237,28 @@ the_ofth_prompt = """
 """
 
 def generate_poetry_response(query, threshold, model):
-    results = arabic_VDB.similarity_search_with_score(query, k=4)
+    results = arabic_VDB.similarity_search_with_score(query, k=4) # you can add k this is the number of the rag context 
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
-    input_with_rag = the_ofth_prompt + context_text + "\n\n" + "  اجب هنا بناء على هذا الطلب : " + query
+    input_with_rag = the_ofth_prompt + context_text + " \n\n " + "  اجب هنا بناء على هذا الطلب : " + query
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
-documents = create_documents(df) 
-arabic_VDB = create_embedding(documents)
 
-model_id = "sdaia/allam-1-13b-instruct"
-parameters = { 
-"decoding_method": "greedy", 
-"max_new_tokens": 200, 
-"repetition_penalty": 1 
-}
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
+    documents = create_documents(df) 
+    arabic_VDB = create_embedding(documents)
+	
+    model_id = "sdaia/allam-1-13b-instruct"
+    parameters = { 
+	"decoding_method": "greedy", 
+	"max_new_tokens": 200, 
+	"repetition_penalty": 1 
+	}
     model = Model(
         model_id=model_id,
         params=parameters,
         credentials=get_credentials(),
-        project_id="11af8977-9294-4e73-a863-b7e37a214840"
     )
     response , rag = generate_poetry_response(query, threshold, model)
     st.write("Generated Poetry:")
