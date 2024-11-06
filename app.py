@@ -80,7 +80,11 @@ st.markdown(
 	padding: 10px;
 	border-radius: 15px;
 
-}
+    }
+    .custom-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-size: 24px;
+        }
     </style>
     """,
     unsafe_allow_html=True
