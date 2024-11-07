@@ -81,6 +81,10 @@ st.markdown(
 	border-radius: 15px;
 
     }
+
+    [data-testid="stBaseButton-secondary"] {
+    	background-color: rgb(38, 39, 48)
+    }
     .custom-text {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-size: 44px;
