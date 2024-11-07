@@ -299,8 +299,7 @@ if st.button("أطلق العنان"):
     )
     response , rag = generate_poetry_response(query, threshold, model)
     status.markdown(f'<div class="custom-text">{response}</div>', unsafe_allow_html=True)
-    st.write("Generated RAG:")
-    st.write(rag)
+    
 
 
 
