@@ -287,7 +287,7 @@ else: prompt_1 = prompt_1 + """
 	2) توضيح المعنى في القصيدة
 	3) ذكر التفعيلات الخاصة بالقصيدة ونوعها ومن اي بحر هي
 	<</SYS>>"""
-status.markdown(f'<div class="custom-text">{prompt_1}</div>', unsafe_allow_html=True)
+#status.markdown(f'<div class="custom-text">{prompt_1}</div>', unsafe_allow_html=True)
 # User Input
 query = st.text_input("أكتب طلبك لإنشاء قصيدة من أحد البحور الشعرية ")
 threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0, 1.0, 0.9)
