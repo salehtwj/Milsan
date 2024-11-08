@@ -16,7 +16,7 @@ st.markdown(
 
     /* Set the background image */
     .stApp {
-        background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/Untitled Design.png?raw=true");  
+        background-image: url("https://raw.githubusercontent.com/salehtwj/Milsan/refs/heads/main/images/Screen Shot 1446-05-04 at 2.18.43 AM.png?raw=true");  
         background-size: cover;
         background-position: center;
     }
@@ -44,19 +44,20 @@ st.markdown(
     }
     
 
-    /* Position the logos at the bottom center */
-  .bottom-center-logos {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-}
-    .bottom-center-logos img {
+     /* Position the logos at the bottom left */
+    .bottom-left-logos {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .bottom-left-logos img {
         width: 100px;
         height: auto;
         margin-right: 15px;
     }
+
 
     /* Position the top left logo */
     .top-left-logo {
