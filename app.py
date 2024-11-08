@@ -344,7 +344,7 @@ if st.button("أطلق العنان"):
     )
 
     if selected_fruit == "انشاء قصيدة" or selected_fruit == "اكمال قصيدة":
-    response, rag = generate_poetry_response(query, threshold, model, enhance = True)
+        response, rag = generate_poetry_response(query, threshold, model, enhance = True)
     else:
         response, rag = generate_poetry_response(query, threshold, model, enhance = False)
         
