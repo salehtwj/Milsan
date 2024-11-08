@@ -86,7 +86,7 @@ st.markdown(
     [data-testid="stBaseButton-secondary"] {
     	background-color: rgb(38, 39, 48)
     }
-    .custom-text {
+    .custom-text p {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-size: 44px;
         }
@@ -316,4 +316,4 @@ if st.button("أطلق العنان"):
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
     response , rag = generate_poetry_response(query, threshold, model)
-    status.markdown(f'<div class="custom-text">{response}</div>', unsafe_allow_html=True)
+    status.write(f'<div class="custom-text">{response}</div>')
