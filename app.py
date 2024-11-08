@@ -282,10 +282,14 @@ def generate_poetry_response(query, threshold, model, enhance = False):
     if enhance:
         enhanced_response = f"{input_with_rag}\n\n{response}</s>\n<s>[INST] احذف جميع الكلمات العربية [/INST]"
 
-        response = model.generate(enhanced_response)['results'][0].get('generated_text')
+        responseX = model.generate(enhanced_response)['results']
+        st.write(responseX)
+
+        response = response[0].get('generated_text')
 
         st.write("with enhancment:")
         st.write(response)
+
     return response, context_text
 
 # Streamlit App Start
@@ -340,7 +344,7 @@ if st.button("أطلق العنان"):
     )
 
     if selected_fruit == "انشاء قصيدة" or selected_fruit == "اكمال قصيدة":
-        response, rag = generate_poetry_response(query, threshold, model, enhance = True)
+    response, rag = generate_poetry_response(query, threshold, model, enhance = True)
     else:
         response, rag = generate_poetry_response(query, threshold, model, enhance = False)
         
