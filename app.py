@@ -212,8 +212,7 @@ def get_credentials():
     }
 
 
-prompt_1 = """
-<s>[INST] <<SYS>>
+prompt_1 = """<s>[INST] <<SYS>>
 أنت شاعر عربي فصيح، عليك كتابة شطر شعري من قصيدة باللغة العربية فقط، مع الالتزام بقوانين التشكيل الشعرية التالية وفق بحر المعطى في السؤال وتفعيلاته، مع الحرص على أن تحمل معنىً. إليك بعض القواعد وبعض الأمثلة لتساعدك في ذلك:
 
 1. الحروف في اللغة العربية:
@@ -253,8 +252,7 @@ prompt_1 = """
   بحر البسيط: يجب أن يتبع أي شطر في قصائد بحر البسيط هذه التفعيلة "مُسْتَفْعِلُنْ فَاْعِلُنْ مُسْتَفْعِلُنْ فَاْعِلُنْ
 
 اكتب قصيدة مستوحاه من المتنبي
-<</SYS>>
-"""
+<</SYS>>"""
 def generate_poetry_response(query, threshold, model):
     results = arabic_VDB.similarity_search_with_score(query, k=4) # you can add k this is the number of the rag context
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
@@ -263,7 +261,7 @@ def generate_poetry_response(query, threshold, model):
 يجب عليك انشاء قصيدتك الخاصة، ولتوسيع مدارك فهمك يمكنك الإستلهام من هذه الأمثلة:
 {1}
 
-انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(the_ofth_prompt, context_text, query)
+انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 
