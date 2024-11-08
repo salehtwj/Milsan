@@ -256,9 +256,14 @@ prompt_1 = """
 <</SYS>>
 """
 def generate_poetry_response(query, threshold, model):
-    results = arabic_VDB.similarity_search_with_score(query, k=4) # you can add k this is the number of the rag context 
+    results = arabic_VDB.similarity_search_with_score(query, k=4) # you can add k this is the number of the rag context
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
-    input_with_rag = the_ofth_prompt + "\n\n!استخدم هذه الامثلة لتوسيع فهمك فقط! يجب عليك إنشاء قصيدتك الخاصة"  + context_text + "\n\n" + " اجب هنا بناء على هذا الطلب : " + query  + "[/INST]"
+    input_with_rag = """{0}
+
+يجب عليك انشاء قصيدتك الخاصة، ولتوسيع مدارك فهمك يمكنك الإستلهام من هذه الأمثلة:
+{1}
+
+انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(the_ofth_prompt, context_text, query)
     return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
 
 
