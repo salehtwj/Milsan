@@ -292,7 +292,7 @@ def generate_poetry_response(query, threshold, model, enhance = False):
 لتوسيع مدارك فهمك يمكنك الإستلهام من هذه الأمثلة:
 {1}
 
-انشأ القصيدة مكونة من ثلاثة ابيات بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
+انشأ القصيدة مكونة من ثلاثة ابيات بناءً على هذا الطلب: {2} [/INST]""".format(prompt_result, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
     st.write("wihtout enhancment:")
     st.write(response)
@@ -317,9 +317,10 @@ api_key = st.text_input("أدخل مفتاح الاستخدام")
 options = ["انشاء قصيدة", "اكمال قصيدة", "شرح قصيدة"]
 selected_fruit = st.selectbox("اخر من خدمات ملسان", options)
 
+prompt_result = ""
 
 if selected_fruit == "انشاء قصيدة":
-    prompt_1 = prompt_start_1 + prompt_1 + """ 
+    prompt_result = prompt_start_1 + prompt_1 + """ 
 	عند انشاء القصيدة يجب عليك كتابتها بناءً على هذه الشروط:
 	1) الإلتزام بالقواعد المذكورة اعلاه
 	2) انشاء قصيدتك الخاصة
@@ -328,7 +329,7 @@ if selected_fruit == "انشاء قصيدة":
 	5) لا يجب عليك استخدام الأمثلة المذكورة ووضعها في القصيدة انما يتم الإستلهام منها فقط!
 	<</SYS>>"""
 elif selected_fruit == "اكمال قصيدة":
-	prompt_1 = prompt_start_2 + prompt_1 + """ 
+	prompt_result = prompt_start_2 + prompt_1 + """ 
 	عند اكمال القصيدة يجب عليك اكمالها بناءً على هذه الشروط:
 	1) الإلتزام بالقواعد المذكورة اعلاه
 	2) اكمال المعنى في القصيدة
@@ -336,7 +337,7 @@ elif selected_fruit == "اكمال قصيدة":
 	4) لا يجب عليك استخدام الأمثلة المذكورة ووضعها في القصيدة انما يتم الإستلهام منها فقط!
 	<</SYS>>"""
     
-else: prompt_1 = prompt_start_3 + prompt_1 + """ 
+else: prompt_result = prompt_start_3 + prompt_1 + """ 
 	عند شرح القصيدة يجب عليك شرحها بناءً على هذه الشروط:
 	1) الإلتزام بالقواعد المذكورة اعلاه
 	2) توضيح المعنى في القصيدة
