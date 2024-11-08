@@ -252,7 +252,7 @@ prompt_1 = """<s>[INST] <<SYS>>
 5) لا يجب عليك استخدام الأمثلة المذكورة ووضعها في القصيدة انما يتم الإستلهام منها فقط!
 <</SYS>>"""
 def generate_poetry_response(query, threshold, model):
-    results = arabic_VDB.similarity_search_with_score(query, k=2) # you can add k this is the number of the rag context
+    results = arabic_VDB.similarity_search_with_score(query, k=3) # you can add k this is the number of the rag context
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
     input_with_rag = """{0}
 
