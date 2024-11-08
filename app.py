@@ -280,7 +280,7 @@ def generate_poetry_response(query, threshold, model, enhance = False):
 
     if enhance:
         enhanced_response = input_with_rag + response + """ </s>
-<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]
+<s>[INST] !حسن هذه القصيدة وأزل أي تكرارات, أؤيد فقط القصيدة لا أريد سياق التفعيلة! فقط اريد القصيدة لا أكثر ولا أقل [/INST]
         """
         response = model.generate(enhanced_response)['results'][0].get('generated_text')
 
