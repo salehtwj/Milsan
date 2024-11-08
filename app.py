@@ -263,7 +263,7 @@ def generate_poetry_response(query, threshold, model):
 
 انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
-    print(resposne)
+    print(response)
     return response, context_text
 
 
