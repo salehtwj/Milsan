@@ -52,7 +52,7 @@ st.markdown(
     transform: translateX(-50%);
     z-index: 9999;
 }
-    .bottom-left-logos img {
+    .bottom-center-logos img {
         width: 100px;
         height: auto;
         margin-right: 15px;
