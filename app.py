@@ -259,7 +259,7 @@ prompt_1 = """ مع الالتزام بقوانين التشكيل الشعري�
 سياق التفعيلة: مُسْتَفْعِلُنْ فَاْعِلُنْ مُسْتَفْعِلُنْ فَاْعِلُنْ
 """
 
-def generate_poetry_response(query, threshold, model):
+def generate_poetry_response(query, threshold, model, enhance = False):
     results = arabic_VDB.similarity_search_with_score(query, k=2) # you can add k this is the number of the rag context
     context_text = "\n\n".join([doc.page_content for doc, score in results if score > threshold])
     input_with_rag = """{0}
@@ -269,8 +269,14 @@ def generate_poetry_response(query, threshold, model):
 
 انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
-    return response, context_text
 
+    if enhance:
+        enhanced_response = input_with_rag + response + """ </s>
+<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]
+        """
+        response = model.generate(enhanced_response)['results'][0].get('generated_text')
+
+    return response, context_text
 
 # Streamlit App Start
 st.title("أهلا بكم في ضيافة الشاعر النابغة المِلساني")
@@ -335,5 +341,10 @@ if st.button("أطلق العنان"):
         credentials=get_credentials(),
 	project_id ="11af8977-9294-4e73-a863-b7e37a214840",
     )
-    response , rag = generate_poetry_response(query, threshold, model)
+
+    if selected_fruit == "انشاء قصيدة" or selected_fruit == "اكمال قصيدة":
+        response , rag = generate_poetry_response(query, threshold, model, enhance = True)
+    else:
+        response , rag = generate_poetry_response(query, threshold, model, enhance = False)
+        
     status.write(f'<div class="custom-text">{response}</div>', unsafe_allow_html=True)
