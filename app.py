@@ -292,7 +292,7 @@ def generate_poetry_response(query, threshold, model, enhance = False):
 لتوسيع مدارك فهمك يمكنك الإستلهام من هذه الأمثلة:
 {1}
 
-انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
+انشأ القصيدة مكونة من ثلاثة ابيات بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
     st.write("wihtout enhancment:")
     st.write(response)
