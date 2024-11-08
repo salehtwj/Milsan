@@ -86,7 +86,7 @@ st.markdown(
     [data-testid="stBaseButton-secondary"] {
     	background-color: rgb(38, 39, 48)
     }
-    .custom-text p {
+    .custom-text, .custom-text p {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-size: 44px;
         }
@@ -263,7 +263,6 @@ def generate_poetry_response(query, threshold, model):
 
 انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
-    st.write(response)
     return response, context_text
 
 
