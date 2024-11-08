@@ -282,6 +282,8 @@ def generate_poetry_response(query, threshold, model, enhance = False):
     if enhance:
         enhanced_response = f"{input_with_rag}\n\n{response}</s>\n<s>[INST] احذف جميع الكلمات العربية [/INST]"
 
+        st.write(enhanced_response)
+
         responseX = model.generate(enhanced_response)['results']
         st.write(responseX)
 
