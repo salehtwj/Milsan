@@ -45,13 +45,13 @@ st.markdown(
     
 
     /* Position the logos at the bottom left */
-    .bottom-left-logos {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        z-index: 9999;
-    }
-
+  .bottom-center-logos {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
     .bottom-left-logos img {
         width: 100px;
         height: auto;
@@ -96,7 +96,7 @@ st.markdown(
 
 st.markdown(
     """
-    <div class="bottom-left-logos">
+    <div class="bottom-center-logos">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/SDAIA_logo-removebg-preview.png?raw=true" alt="SDAIA Logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/safcsp_logo.png?raw=true" alt="SAFCSP Logo">
         <img src="https://github.com/salehtwj/Milsan/blob/main/images/tuwaiq_logo_w.png?raw=true/" alt="Tuwaiq Logo">
