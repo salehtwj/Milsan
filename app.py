@@ -298,7 +298,7 @@ def generate_poetry_response(query, threshold, model, enhance = False):
     st.write(response)
 
     if enhance:
-        enhanced_response = f"{input_with_rag}\n\n---\n\n{response}\n\n---\n\n<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]"
+        enhanced_response = f"{input_with_rag}\n\n---\n\n{response}\n\n---\n\n<s>[INST] حسن هذه القصيدة وتأكد أنها تمشي على أحد البحور الشعرية اذا لم يكن معطى ولا تذكر ما هو البحر المستخدم فقط أكتب القصيدة دون ذكر اي شيء اخر, وأزل أي تكرارات فقط أكتب القصيدة دون ذكر اي شيء اخر! [/INST]"
 
         response = model.generate(enhanced_response)['results'][0].get('generated_text')
 
@@ -359,7 +359,7 @@ if st.button("أطلق العنان"):
     model_id = "sdaia/allam-1-13b-instruct"
     parameters = { 
 	"decoding_method": "greedy", 
-	"max_new_tokens": 800, 
+	"max_new_tokens": 400, 
 	"repetition_penalty": 1 
 	}
     model = Model(
