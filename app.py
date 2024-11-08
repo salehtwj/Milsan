@@ -262,7 +262,9 @@ def generate_poetry_response(query, threshold, model):
 {1}
 
 انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
-    return model.generate(input_with_rag)['results'][0].get('generated_text') , context_text
+    response = model.generate(input_with_rag)['results'][0].get('generated_text')
+    print(resposne)
+    return response, context_text
 
 
 
@@ -315,11 +317,3 @@ if st.button("أطلق العنان"):
     )
     response , rag = generate_poetry_response(query, threshold, model)
     status.markdown(f'<div class="custom-text">{response}</div>', unsafe_allow_html=True)
-    
-
-
-
-
-	
-
-
