@@ -281,11 +281,13 @@ api_key = st.text_input("أدخل مفتاح الاستخدام")
 options = ["انشاء قصيدة", "اكمال قصيدة", "شرح قصيدة"]
 selected_fruit = st.selectbox("اخر من خدمات ملسان", options)
 
+'''
 if selected_fruit == "شرح قصيدة":
     
 elif selected_fruit == "اكمال قصيدة":
     
 else:
+'''
 
 # User Input
 query = st.text_input("أكتب طلبك لإنشاء قصيدة من أحد البحور الشعرية ")
