@@ -290,9 +290,8 @@ def generate_poetry_response(query, threshold, model, enhance = False):
     st.write(response)
 
     if enhance:
-        enhanced_response = input_with_rag + response + """ </s>
-<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]
-        """
+        enhanced_response = f"{input_with_rag}\n\n---\n\n{response}\n\n---\n\n<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]"
+
         response = model.generate(enhanced_response)['results'][0].get('generated_text')
 
         st.write("with enhancment:")
@@ -343,7 +342,6 @@ threshold = st.slider("أختر نسبة التقارب المطلوبة:", 0.0,
 
 # Process Data and Display Results
 if st.button("أطلق العنان"):
-    st.write("Generated Poetry:")
     status = st.empty()
 	
     status.markdown('<div class="custom-text">يتم الإبداع...</div>', unsafe_allow_html=True)
