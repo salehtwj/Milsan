@@ -277,13 +277,17 @@ def generate_poetry_response(query, threshold, model, enhance = False):
 
 انشأ القصيدة بناءً على هذا الطلب: {2} [/INST]""".format(prompt_1, context_text, query)
     response = model.generate(input_with_rag)['results'][0].get('generated_text')
+    st.write("wihtout enhancment:")
+    st.write(response)
 
     if enhance:
         enhanced_response = input_with_rag + response + """ </s>
-<s>[INST] !حسن هذه القصيدة وأزل أي تكرارات, أؤيد فقط القصيدة لا أريد سياق التفعيلة! فقط اريد القصيدة لا أكثر ولا أقل [/INST]
+<s>[INST] حسن هذه القصيدة وأزل أي تكرارات [/INST]
         """
         response = model.generate(enhanced_response)['results'][0].get('generated_text')
 
+        st.write("with enhancment:")
+        st.write(response)
     return response, context_text
 
 # Streamlit App Start
