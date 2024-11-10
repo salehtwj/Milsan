@@ -1,4 +1,3 @@
-import streamlit as st # for dl
 import pandas as pd # for data frame
 from langchain_huggingface import HuggingFaceEmbeddings # temp for now in the ht we will change to the IBM embedding
 from langchain.text_splitter import RecursiveCharacterTextSplitter # this is to sipletter fo the markdown df
